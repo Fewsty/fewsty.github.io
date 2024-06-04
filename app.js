@@ -41,7 +41,7 @@
       .catch(function (err) {
         console.log("An error occurred: " + err);
       });
-
+    /*
     video.addEventListener(
       "canplay",
       function (ev) {
@@ -64,7 +64,7 @@
       },
       false
     );
-
+*/
     startbutton.addEventListener(
       "click",
       function (ev) {
