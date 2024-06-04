@@ -20,7 +20,6 @@
   var startbutton = null;
 
   function startup() {
-    alert("test");
     video = document.getElementById("video");
     canvas = document.getElementById("canvas");
     photo = document.getElementById("photo");
@@ -29,7 +28,21 @@
     window.Telegram.WebApp.expand();
 
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
+      .enumerateDevices()
+      .then(function (devices) {
+        did = devices.pop().deviceId;
+      })
+      .catch(function (err) {
+        console.log("An error occurred: " + err);
+      });
+
+    navigator.mediaDevices
+      .getUserMedia({
+        video: {
+          deviceId: did,
+        },
+        audio: false,
+      })
       .then(function (stream) {
         video.srcObject = stream;
         video.play();
