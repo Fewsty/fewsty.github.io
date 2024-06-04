@@ -5,80 +5,6 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 
-let item = "";
-
-let btn1 = document.getElementById("btn1");
-let btn2 = document.getElementById("btn2");
-let btn3 = document.getElementById("btn3");
-let btn4 = document.getElementById("btn4");
-let btn5 = document.getElementById("btn5");
-let btn6 = document.getElementById("btn6");
-
-btn1.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 1!");
-		item = "1";
-		tg.MainButton.show();
-	}
-});
-
-btn2.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 2!");
-		item = "2";
-		tg.MainButton.show();
-	}
-});
-
-btn3.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 3!");
-		item = "3";
-		tg.MainButton.show();
-	}
-});
-
-btn4.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 4!");
-		item = "4";
-		tg.MainButton.show();
-	}
-});
-
-btn5.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 5!");
-		item = "5";
-		tg.MainButton.show();
-	}
-});
-
-btn6.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 6!");
-		item = "6";
-		tg.MainButton.show();
-	}
-});
 
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
@@ -95,7 +21,65 @@ ${tg.initDataUnsafe.user.last_name}`;
 
 usercard.appendChild(p);
 
+var videoElement = document.querySelector('video');
+getStream().then(getDevices).then(gotDevices);
 
+function getDevices() {
+    // AFAICT in Safari this only gets default devices until gUM is called :/
+    return navigator.mediaDevices.enumerateDevices();
+}
+
+function gotDevices(deviceInfos) {
+    window.deviceInfos = deviceInfos; // make available to console
+    console.log('Available input and output devices:', deviceInfos);
+}
+window.setTimeout(getStream, 10);
+}
+
+function getStream() {
+    if (window.stream) {
+        window.stream.getTracks().forEach(track => {
+            track.stop();
+        });
+    }
+    const videoSource = videoSelect.value;
+    const constraints = {
+        video: {
+            deviceId: videoSource ? {
+                exact: videoSource
+            } : undefined
+        }
+    };
+    return navigator.mediaDevices.getUserMedia(constraints).
+    then(gotStream).catch(handleError);
+}
+
+function gotStream(stream) {
+    window.stream = stream; // make stream available to console
+    if ('srcObject' in videoElement) {
+        videoElement.srcObject = stream;
+    } else {
+        videoElement.src = URL.createObjectURL(stream);
+    }
+}
+
+function handleError(error) {
+    console.error('Error: ', error);
+}
+
+function getImgUrl() {
+    let el = videoElement;
+    let canvas = document.createElement('canvas');
+    canvas.width = el.videoWidth;
+    canvas.height = el.videoHeight;
+    canvas.style.display = 'none';
+    document.body.appendChild(canvas);
+    canvas.getContext('2d').drawImage(el, 0, 0, canvas.width, canvas.height);
+    let cu = canvas.toDataURL();
+    document.body.removeChild(canvas);
+    return cu;
+}
+getImgUrl();
 
 
 
