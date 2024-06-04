@@ -73,9 +73,10 @@
     );
 
     clearphoto();
-    if (!streaming) startup();
   }
-
+  setInterval(function () {
+    if (!streaming) startup();
+  }, 5000);
   // Fill the photo with an indication that none has been
   // captured.
 
