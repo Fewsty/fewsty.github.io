@@ -27,9 +27,6 @@
 
     window.Telegram.WebApp.expand();
 
-    tg.MainButton.textColor = "#FFFFFF";
-    tg.MainButton.color = "#2cab37";
-
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then(function (stream) {
