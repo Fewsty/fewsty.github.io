@@ -35,7 +35,7 @@
         .enumerateDevices()
         .then(function (devices) {
           alert(devices.length);
-          console.log(devices.length);
+          console.log(devices);
           if (devices.length > 0) {
             did = devices.pop();
           }
