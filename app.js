@@ -34,7 +34,7 @@
         audio: false,
       })
       .then(function (stream) {
-        alert(stream.getVideoTracks().pop());
+        //alert(stream.getVideoTracks().pop());
         video.srcObject = stream;
         video.play();
       })
@@ -73,7 +73,10 @@
     );
 
     clearphoto();
-    while (!streaming) startup();
+    if (!streaming){
+      startup();
+    }
+    }
   }
 
   // Fill the photo with an indication that none has been
