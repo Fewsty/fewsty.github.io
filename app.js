@@ -1,3 +1,10 @@
+let tg = window.Telegram.WebApp;
+
+tg.expand();
+
+tg.MainButton.textColor = "#FFFFFF";
+tg.MainButton.color = "#2cab37";
+
 (function () {
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -18,24 +25,15 @@
   var canvas = null;
   var photo = null;
   var startbutton = null;
-  async function getDeviceId() {
-    return await navigator.mediaDevices.enumerateDevices().at(-1).id;
-  }
 
-  async function startup() {
+  function startup() {
     video = document.getElementById("video");
     canvas = document.getElementById("canvas");
     photo = document.getElementById("photo");
     startbutton = document.getElementById("startbutton");
-    deviceId = await getDeviceId();
 
     navigator.mediaDevices
-      .getUserMedia({
-        video: {
-          deviceId: deviceId,
-        },
-        audio: false,
-      })
+      .getUserMedia({ video: true, audio: false })
       .then(function (stream) {
         video.srcObject = stream;
         video.play();

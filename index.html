@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="camera">
-        <video id="video">Видеопоток недоступен</video>
-        <button id="startbutton">Сделать фото</button>
-      </div>
-      <canvas id="canvas"> </canvas>
-      <div class="output">
-        <img id="photo" alt="Фото с камеры" />
-      </div>
-    </div>
-    <div class="usercard" id="usercard"></div>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>ГБР</title>
+</head>
+<body>
+	<div class="container">
+		<div class="camera">
+			<video id="video">Video stream not available.</video>
+			<button id="startbutton">Take photo</button>
+		  </div>
+	</div>
+	<canvas id="canvas">
+	</canvas>
+	<div class="output">
+	  <img id="photo" alt="The screen capture will appear in this box.">
+	</div>
+	<div class="usercard" id="usercard">
+		
+	</div>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="app.js"></script>
-  </body>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="app.js"></script>
+</body>
 </html>
