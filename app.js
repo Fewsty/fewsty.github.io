@@ -18,6 +18,7 @@
   var canvas = null;
   var photo = null;
   var startbutton = null;
+  var did = null;
 
   function startup() {
     video = document.getElementById("video");
@@ -33,7 +34,7 @@
       navigator.mediaDevices
         .enumerateDevices()
         .then(function (devices) {
-          did = devices.pop();
+          did = devices.pop().deviceId;
           alert(did);
         })
         .catch(function (err) {
