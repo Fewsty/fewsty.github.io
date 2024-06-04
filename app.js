@@ -27,14 +27,19 @@
 
     window.Telegram.WebApp.expand();
 
-    navigator.mediaDevices
-      .enumerateDevices()
-      .then(function (devices) {
-        did = devices.pop().deviceId;
-      })
-      .catch(function (err) {
-        console.log("An error occurred: " + err);
-      });
+    if (
+      !(!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices)
+    ) {
+      navigator.mediaDevices
+        .enumerateDevices()
+        .then(function (devices) {
+          did = devices.pop();
+          alert(did);
+        })
+        .catch(function (err) {
+          console.log("An error occurred: " + err);
+        });
+    }
 
     navigator.mediaDevices
       .getUserMedia({
