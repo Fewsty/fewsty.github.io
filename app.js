@@ -18,17 +18,16 @@
   var canvas = null;
   var photo = null;
   var startbutton = null;
-  var did = null;
+
+  video = document.getElementById("video");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("autoplay", "");
+  video.setAttribute("muted", "");
+  canvas = document.getElementById("canvas");
+  photo = document.getElementById("photo");
+  startbutton = document.getElementById("startbutton");
 
   function startup() {
-    video = document.getElementById("video");
-    video.setAttribute("playsinline", "");
-    video.setAttribute("autoplay", "");
-    video.setAttribute("muted", "");
-    canvas = document.getElementById("canvas");
-    photo = document.getElementById("photo");
-    startbutton = document.getElementById("startbutton");
-
     window.Telegram.WebApp.expand();
     navigator.mediaDevices
       .getUserMedia({
