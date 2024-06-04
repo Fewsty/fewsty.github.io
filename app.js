@@ -1,10 +1,3 @@
-let tg = window.Telegram.WebApp;
-
-tg.expand();
-
-tg.MainButton.textColor = "#FFFFFF";
-tg.MainButton.color = "#2cab37";
-
 (function () {
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -31,6 +24,11 @@ tg.MainButton.color = "#2cab37";
     canvas = document.getElementById("canvas");
     photo = document.getElementById("photo");
     startbutton = document.getElementById("startbutton");
+
+    window.Telegram.WebApp.expand();
+
+    tg.MainButton.textColor = "#FFFFFF";
+    tg.MainButton.color = "#2cab37";
 
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
@@ -112,4 +110,5 @@ tg.MainButton.color = "#2cab37";
   // Set up our event listener to run the startup process
   // once loading is complete.
   window.addEventListener("load", startup, false);
+  window.Telegram.WebApp.MainButton.onClick(startup);
 })();
