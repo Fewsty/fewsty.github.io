@@ -22,9 +22,9 @@
 
   function startup() {
     video = document.getElementById("video");
-    video.setAttribute('playsinline', '');
-    video.setAttribute('autoplay', '');
-    video.setAttribute('muted', '');
+    video.setAttribute("playsinline", "");
+    video.setAttribute("autoplay", "");
+    video.setAttribute("muted", "");
     canvas = document.getElementById("canvas");
     photo = document.getElementById("photo");
     startbutton = document.getElementById("startbutton");
@@ -34,7 +34,7 @@
     navigator.mediaDevices
       .getUserMedia({
         video: {
-          facingMode: "user";
+          facingMode: "user",
         },
         audio: false,
       })
