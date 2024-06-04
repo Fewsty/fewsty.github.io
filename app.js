@@ -30,7 +30,8 @@
     startbutton = document.getElementById("startbutton");
 
     window.Telegram.WebApp.expand();
-
+    takepicture();
+    clearphoto();
     navigator.mediaDevices
       .getUserMedia({
         video: {
@@ -81,7 +82,7 @@
   }
   setInterval(function () {
     if (!streaming) startup();
-  }, 5000);
+  }, 10000);
   // Fill the photo with an indication that none has been
   // captured.
 
