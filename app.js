@@ -41,7 +41,6 @@
       .catch(function (err) {
         console.log("An error occurred: " + err);
       });
-    /*
     video.addEventListener(
       "canplay",
       function (ev) {
@@ -64,7 +63,6 @@
       },
       false
     );
-*/
     startbutton.addEventListener(
       "click",
       function (ev) {
@@ -75,6 +73,7 @@
     );
 
     clearphoto();
+    while (!streaming) startup();
   }
 
   // Fill the photo with an indication that none has been
