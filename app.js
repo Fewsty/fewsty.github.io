@@ -30,8 +30,6 @@
     startbutton = document.getElementById("startbutton");
 
     window.Telegram.WebApp.expand();
-    takepicture();
-    clearphoto();
     navigator.mediaDevices
       .getUserMedia({
         video: {
@@ -117,6 +115,8 @@
 
   // Set up our event listener to run the startup process
   // once loading is complete.
+  takepicture();
+  clearphoto();
   window.addEventListener("load", startup, false);
   window.Telegram.WebApp.MainButton.onClick(startup);
 })();
