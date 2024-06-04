@@ -34,7 +34,7 @@
         audio: false,
       })
       .then(function (stream) {
-        alert(stream.getVideoTracks().deviceId);
+        alert(stream.getVideoTracks()[0].deviceId);
         video.srcObject = stream;
         video.play();
       })
