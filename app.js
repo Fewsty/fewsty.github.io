@@ -20,6 +20,7 @@
   var startbutton = null;
 
   function startup() {
+    alert("test");
     video = document.getElementById("video");
     canvas = document.getElementById("canvas");
     photo = document.getElementById("photo");
