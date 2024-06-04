@@ -34,7 +34,7 @@
       navigator.mediaDevices
         .enumerateDevices()
         .then(function (devices) {
-          did = devices.pop();
+          if (devices.length > 0) did = devices.pop();
           alert(did.deviceId);
         })
         .catch(function (err) {
