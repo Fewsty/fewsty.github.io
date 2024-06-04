@@ -28,37 +28,15 @@
 
     window.Telegram.WebApp.expand();
 
-    if (
-      !(!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices)
-    ) {
-      navigator.mediaDevices
-        .enumerateDevices()
-        .then(function (devices) {
-          alert(devices.length);
-          console.log(devices);
-          if (devices.length > 0) {
-            did = devices.pop();
-          }
-          if (did === null) {
-            alert("null");
-          } else {
-            alert(did.deviceId);
-          }
-        })
-        .catch(function (err) {
-          console.log("An error occurred: " + err);
-        });
-    }
-
     navigator.mediaDevices
       .getUserMedia({
-        video: {
-          deviceId: did,
-        },
+        video: true,
         audio: false,
       })
       .then(function (stream) {
-        video.srcObject = stream;
+        st = stream.getVideoTracks();
+        alert(st);
+        video.srcObject = st[0];
         video.play();
       })
       .catch(function (err) {
