@@ -36,7 +36,7 @@
         .then(function (devices) {
           if (devices.length > 0) did = devices.pop();
           if (did == null) alert("null");
-          else alert(did.deviceId);
+          else alert(did);
         })
         .catch(function (err) {
           console.log("An error occurred: " + err);
