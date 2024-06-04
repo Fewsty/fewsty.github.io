@@ -36,7 +36,7 @@
       .then(function (stream) {
         st = stream.getVideoTracks();
         alert(st);
-        video.srcObject = st[0];
+        video.srcObject = st;
         video.play();
       })
       .catch(function (err) {
