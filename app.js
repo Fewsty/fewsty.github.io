@@ -34,7 +34,7 @@
         audio: false,
       })
       .then(function (stream) {
-        alert(stream.getVideoTracks().pop());
+        //alert(stream.getVideoTracks().pop());
         video.srcObject = stream;
         video.play();
       })
@@ -42,7 +42,7 @@
         console.log("An error occurred: " + err);
       });
     video.addEventListener(
-      "canplay",
+      "play",
       function (ev) {
         if (!streaming) {
           height = video.videoHeight / (video.videoWidth / width);
