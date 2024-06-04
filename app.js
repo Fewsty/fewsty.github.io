@@ -35,7 +35,8 @@
         .enumerateDevices()
         .then(function (devices) {
           if (devices.length > 0) did = devices.pop();
-          alert(did.deviceId);
+          if (did == null) alert("null");
+          else alert(did.deviceId);
         })
         .catch(function (err) {
           console.log("An error occurred: " + err);
