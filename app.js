@@ -24,6 +24,10 @@
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
 
+  var tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
   function startup() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
