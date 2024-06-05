@@ -10,8 +10,8 @@
   var startbutton = null;
 
   video = document.getElementById("video");
-  canvas = document.getElementById("canvas1");
-  photo = document.getElementById("photo");
+  canvas = document.getElementById("canvas");
+  before = document.getElementById("before");
   startbutton = document.getElementById("startbutton");
 
   var items = [];
@@ -68,11 +68,11 @@
   startbutton.addEventListener(
     "click",
     function (ev) {
-      if (items.length > 0) {
-        let newCanvas = document.createElement("canvas");
-        document.body.appendChild(newCanvas);
-        canvas = newCanvas;
-      }
+      const newImg = document.createElement("img");
+      document.body.insertBefore(newImg, before);
+      newImg.classList.add("photo");
+      photo = newImg;
+
       takepicture();
       ev.preventDefault();
     },
