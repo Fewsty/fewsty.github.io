@@ -30,10 +30,8 @@
   startbutton = document.getElementById("startbutton");
 
   function startup() {
-    //tg.ready();
-    //tg.expand();
-
-    startbutton.click();
+    tg.ready();
+    tg.expand();
 
     navigator.mediaDevices
       .getUserMedia({
