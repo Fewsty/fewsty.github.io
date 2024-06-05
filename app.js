@@ -30,8 +30,7 @@
   var mb = tg.MainButton;
   tg.ready();
   tg.expand();
-  mb.textColor = "#FFFFFF";
-  mb.textColor = "#2cab37";
+  //mb.textColor = "#FFFFFF";
   mb.setText("Отправить");
   mb.hide();
 
