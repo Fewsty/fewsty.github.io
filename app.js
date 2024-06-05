@@ -1,4 +1,6 @@
 (function () {
+  var tg = window.Telegram.WebApp;
+
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
@@ -28,10 +30,11 @@
   startbutton = document.getElementById("startbutton");
 
   function startup() {
-    let tg = window.Telegram.WebApp;
+    //tg.ready();
+    //tg.expand();
 
-    tg.ready();
-    tg.expand();
+    startbutton.click();
+
     navigator.mediaDevices
       .getUserMedia({
         video: {
@@ -119,6 +122,5 @@
   // once loading is complete.
 
   //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
-  startbutton.click();
   window.addEventListener("load", startup, false);
 })();
