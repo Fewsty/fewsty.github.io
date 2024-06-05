@@ -119,6 +119,7 @@
   // Set up our event listener to run the startup process
   // once loading is complete.
   clearphoto();
-  window.Telegram.WebView.receiveEvent("web_app_ready", startup);
-  //window.addEventListener("load", startup, false);
+  //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
+  video.focus();
+  window.addEventListener("load", startup, false);
 })();
