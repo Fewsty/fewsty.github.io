@@ -21,7 +21,7 @@
 	display:inline-block;
   }
   
-  .output {
+  #output {
 	width: 340px;
 	display:inline-block;
   }

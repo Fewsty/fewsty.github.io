@@ -11,6 +11,7 @@
 
   video = document.getElementById("video");
   canvas = document.getElementById("canvas");
+  output = document.getElementById("output");
   before = document.getElementById("before");
   startbutton = document.getElementById("startbutton");
 
@@ -69,7 +70,7 @@
     "click",
     function (ev) {
       const newImg = document.createElement("img");
-      document.body.insertBefore(newImg, before);
+      output.insertBefore(newImg, before);
       newImg.classList.add("photo");
       photo = newImg;
 
