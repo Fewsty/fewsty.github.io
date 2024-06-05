@@ -1,18 +1,8 @@
 (function () {
-  // The width and height of the captured photo. We will set the
-  // width to the value defined here, but the height will be
-  // calculated based on the aspect ratio of the input stream.
-
-  var width = 320; // We will scale the photo width to this
-  var height = 0; // This will be computed based on the input stream
-
-  // |streaming| indicates whether or not we're currently streaming
-  // video from the camera. Obviously, we start at false.
+  var width = 320;
+  var height = 0;
 
   var streaming = false;
-
-  // The various HTML elements we need to configure or control. These
-  // will be set by the startup() function.
 
   var video = null;
   var canvas = null;
@@ -20,11 +10,11 @@
   var startbutton = null;
 
   video = document.getElementById("video");
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById("canvas1");
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
 
-  var item = null;
+  var items = [];
 
   var tg = window.Telegram.WebApp;
   var mb = tg.MainButton;
@@ -62,9 +52,6 @@
       if (!streaming) {
         height = video.videoHeight / (video.videoWidth / width);
 
-        // Firefox currently has a bug where the height can't be read from
-        // the video, so we will make assumptions if this happens.
-
         if (isNaN(height)) {
           height = width / (4 / 3);
         }
@@ -87,7 +74,20 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
-    tg.sendData(item);
+    fetch("http://77.232.142.216/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: items }),
+    })
+      .then((data) => {
+        console.log("Успешно:", data);
+        tg.close();
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+        mb.color = "#ff2400";
+        mb.setText("ОШИБКА");
+      });
   });
   // setInterval(function () {
   //   if (!streaming) startup();
@@ -104,13 +104,12 @@
     photo.setAttribute("src", data);
   }
 
-  // Capture a photo by fetching the current contents of the video
-  // and drawing it into a canvas, then converting that to a PNG
-  // format data URL. By drawing it on an offscreen canvas and then
-  // drawing that to the screen, we can change its size and/or apply
-  // other changes before drawing it.
-
   function takepicture() {
+    if (items.length != 0) {
+      const newCanvas = document.createElement("canvas");
+      document.body.insertBefore(newCanvas, canvas);
+      canvas = newCanvas;
+    }
     var context = canvas.getContext("2d");
     if (width && height) {
       canvas.width = width;
@@ -119,15 +118,13 @@
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
-      item = data;
+      items.push(data);
       mb.show();
     } else {
       clearphoto();
     }
   }
 
-  // Set up our event listener to run the startup process
-  // once loading is complete.
   clearphoto();
   //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
   window.addEventListener("load", startup, false);
