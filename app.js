@@ -27,8 +27,12 @@
   startbutton = document.getElementById("startbutton");
 
   function startup() {
-    tg.ready();
-    tg.expand();
+    video.click();
+    video.click();
+    video.click();
+
+    //tg.ready();
+    //tg.expand();
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
@@ -120,6 +124,5 @@
   // once loading is complete.
   clearphoto();
   //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
-  video.focus();
   window.addEventListener("load", startup, false);
 })();
