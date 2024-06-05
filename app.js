@@ -33,21 +33,28 @@
     tg.ready();
     tg.expand();
 
-    navigator.mediaDevices
-      .getUserMedia({
-        video: {
-          facingMode: "environment",
-        },
-        audio: false,
-      })
-      .then(function success(stream) {
-        //alert(stream.getVideoTracks().pop());
-        video.srcObject = stream;
-        video.play();
-      })
-      .catch(function (err) {
-        console.log("An error occurred: " + err);
-      });
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({
+          video: {
+            facingMode: "environment",
+          },
+          audio: false,
+        })
+        .then(function success(stream) {
+          if ("srcObject" in video) {
+            video.srcObject = stream;
+          } else {
+            video.src = window.URL.createObjectURL(stream);
+          }
+          video.onloadedmetadata = function (e) {
+            video.play();
+          };
+        })
+        .catch(function (err) {
+          console.log("An error occurred: " + err);
+        });
+    }
     video.addEventListener(
       "play",
       function (ev) {
