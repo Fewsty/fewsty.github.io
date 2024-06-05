@@ -22,9 +22,6 @@
   var startbutton = null;
 
   video = document.getElementById("video");
-  video.setAttribute("playsinline", "");
-  video.setAttribute("autoplay", "");
-  video.setAttribute("muted", "");
   canvas = document.getElementById("canvas");
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
@@ -47,47 +44,43 @@
           } else {
             video.src = window.URL.createObjectURL(stream);
           }
-          video.onloadedmetadata = function (e) {
-            video.play();
-          };
+          video.addEventListener("loadedmetadata", (event) => video.play());
         })
         .catch(function (err) {
           console.log("An error occurred: " + err);
         });
     }
-    video.addEventListener(
-      "play",
-      function (ev) {
-        if (!streaming) {
-          height = video.videoHeight / (video.videoWidth / width);
-
-          // Firefox currently has a bug where the height can't be read from
-          // the video, so we will make assumptions if this happens.
-
-          if (isNaN(height)) {
-            height = width / (4 / 3);
-          }
-
-          video.setAttribute("width", width);
-          video.setAttribute("height", height);
-          canvas.setAttribute("width", width);
-          canvas.setAttribute("height", height);
-          streaming = true;
-        }
-      },
-      false
-    );
-    startbutton.addEventListener(
-      "click",
-      function (ev) {
-        takepicture();
-        ev.preventDefault();
-      },
-      false
-    );
-
-    clearphoto();
   }
+  video.addEventListener(
+    "play",
+    function (ev) {
+      if (!streaming) {
+        height = video.videoHeight / (video.videoWidth / width);
+
+        // Firefox currently has a bug where the height can't be read from
+        // the video, so we will make assumptions if this happens.
+
+        if (isNaN(height)) {
+          height = width / (4 / 3);
+        }
+
+        video.setAttribute("width", width);
+        video.setAttribute("height", height);
+        canvas.setAttribute("width", width);
+        canvas.setAttribute("height", height);
+        streaming = true;
+      }
+    },
+    false
+  );
+  startbutton.addEventListener(
+    "click",
+    function (ev) {
+      takepicture();
+      ev.preventDefault();
+    },
+    false
+  );
   setInterval(function () {
     if (!streaming) startup();
   }, 10000);
@@ -125,7 +118,7 @@
 
   // Set up our event listener to run the startup process
   // once loading is complete.
-
-  //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
-  window.addEventListener("load", startup, false);
+  clearphoto();
+  window.Telegram.WebView.receiveEvent("web_app_ready", startup);
+  //window.addEventListener("load", startup, false);
 })();
