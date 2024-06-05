@@ -126,7 +126,6 @@
     }
   }
 
-  clearphoto();
   //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
   window.addEventListener("load", startup, false);
 })();
