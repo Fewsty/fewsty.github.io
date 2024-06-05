@@ -106,8 +106,8 @@
 
   function takepicture() {
     if (items.length != 0) {
-      const newCanvas = document.createElement("canvas");
-      document.body.insertBefore(newCanvas, canvas);
+      let newCanvas = document.createElement("canvas");
+      document.body.appendChild(newCanvas);
       canvas = newCanvas;
     }
     var context = canvas.getContext("2d");
