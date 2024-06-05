@@ -72,6 +72,7 @@
       const newImg = document.createElement("img");
       output.insertBefore(newImg, before);
       newImg.classList.add("photo");
+      before = newImg;
       photo = newImg;
 
       takepicture();
@@ -120,7 +121,6 @@
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
       items.push(data);
-      alert(items.length);
       mb.show();
     } else {
       clearphoto();
