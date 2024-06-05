@@ -24,9 +24,16 @@
   photo = document.getElementById("photo");
   startbutton = document.getElementById("startbutton");
 
+  var item = null;
+
   var tg = window.Telegram.WebApp;
+  var mb = tg.MainButton;
   tg.ready();
   tg.expand();
+  mb.textColor = "#FFFFFF";
+  mb.textColor = "#2cab37";
+  mb.setText("Отправить");
+  mb.hide();
 
   function startup() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -80,9 +87,12 @@
     },
     false
   );
-  setInterval(function () {
-    if (!streaming) startup();
-  }, 10000);
+  tg.onEvent("mainButtonClicked", function () {
+    tg.sendData(item);
+  });
+  // setInterval(function () {
+  //   if (!streaming) startup();
+  // }, 10000);
   // Fill the photo with an indication that none has been
   // captured.
 
@@ -110,6 +120,8 @@
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
+      item = data;
+      mb.show();
     } else {
       clearphoto();
     }
