@@ -68,6 +68,11 @@
   startbutton.addEventListener(
     "click",
     function (ev) {
+      if (items.length > 0) {
+        let newCanvas = document.createElement("canvas");
+        document.body.appendChild(newCanvas);
+        canvas = newCanvas;
+      }
       takepicture();
       ev.preventDefault();
     },
@@ -105,11 +110,6 @@
   }
 
   function takepicture() {
-    if (items.length != 0) {
-      let newCanvas = document.createElement("canvas");
-      document.body.appendChild(newCanvas);
-      canvas = newCanvas;
-    }
     var context = canvas.getContext("2d");
     if (width && height) {
       canvas.width = width;
