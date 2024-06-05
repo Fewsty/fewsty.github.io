@@ -119,5 +119,6 @@
   // once loading is complete.
 
   //window.Telegram.WebView.receiveEvent("web_app_ready", startup);
+  startbutton.click();
   window.addEventListener("load", startup, false);
 })();
