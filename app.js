@@ -84,7 +84,7 @@
     //chat_id = tg.initDataUnsafe.chat.id;
     //alert(chat_id);
     fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
