@@ -87,7 +87,7 @@
     r.append(
       "json",
       JSON.stringify({
-        chat_id: 1,
+        chat_id: chat_id,
         action: "camera_photo",
         frames: items,
       })
