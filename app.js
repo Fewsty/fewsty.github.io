@@ -81,9 +81,9 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
-    //chat_id = tg.initDataUnsafe.chat.id;
+    chat_id = tg.initDataUnsafe.chat.id;
     //alert(chat_id);
-    let r = new FormData();
+    r = new FormData();
     r.append(
       "json",
       JSON.stringify({
@@ -92,8 +92,14 @@
         frames: items,
       })
     );
-    fetch("bitrix.abguard.ru/local/gbr_bot_webhook.php", {
+    fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
       method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+      },
       body: r,
     })
       .then((data) => {
