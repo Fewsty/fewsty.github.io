@@ -83,17 +83,18 @@
   tg.onEvent("mainButtonClicked", function () {
     //chat_id = tg.initDataUnsafe.chat.id;
     //alert(chat_id);
-    fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
+    let r = new FormData();
+    r.append(
+      "json",
+      JSON.stringify({
         chat_id: 1,
         action: "camera_photo",
         frames: items,
-      }),
+      })
+    );
+    fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
+      method: "POST",
+      body: r,
     })
       .then((data) => {
         console.log("Успешно:", data);
