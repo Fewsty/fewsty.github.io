@@ -92,6 +92,7 @@
       })
       .catch((error) => {
         console.error("Ошибка:", error);
+        alert(error.message);
         mb.color = "#ff2400";
         mb.setText("ОШИБКА");
       });
