@@ -88,7 +88,7 @@
         Accept: "application/json",
       },
       body: JSON.stringify({
-        chat_id: `${tg.initDataUnsafe.chat.id}`,
+        chat_id: tg.initDataUnsafe.chat.id,
         action: "camera_photo",
         frames: items,
       }),
