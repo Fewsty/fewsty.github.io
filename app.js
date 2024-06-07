@@ -95,6 +95,8 @@
     })
       .then((data) => {
         console.log("Успешно:", data);
+        mb.color = "#00FF00";
+        mb.setText("УСПЕШНО");
         tg.close();
       })
       .catch((error) => {
