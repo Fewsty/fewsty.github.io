@@ -81,10 +81,10 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
-    fetch("http://77.232.142.216/", {
+    fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key: items }),
+      body: JSON.stringify({ action: "camera_photo", frames: items }),
     })
       .then((data) => {
         console.log("Успешно:", data);
