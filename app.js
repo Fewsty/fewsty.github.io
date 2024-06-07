@@ -19,7 +19,6 @@
 
   var tg = window.Telegram.WebApp;
   var mb = tg.MainButton;
-  var chat_id = `${tg.initDataUnsafe.chat.id}`;
   tg.ready();
   tg.expand();
   //mb.textColor = "#FFFFFF";
@@ -89,7 +88,7 @@
         Accept: "application/json",
       },
       body: JSON.stringify({
-        chat_id: chat_id,
+        chat_id: `${tg.initDataUnsafe.chat.id}`,
         action: "camera_photo",
         frames: items,
       }),
