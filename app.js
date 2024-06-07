@@ -81,6 +81,8 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
+    //chat_id = tg.initDataUnsafe.chat.id;
+    //alert(chat_id);
     fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
       method: "POST",
       headers: {
@@ -88,7 +90,7 @@
         Accept: "application/json",
       },
       body: JSON.stringify({
-        chat_id: tg.initDataUnsafe.chat.id,
+        chat_id: 1,
         action: "camera_photo",
         frames: items,
       }),
