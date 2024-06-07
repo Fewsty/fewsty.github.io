@@ -92,7 +92,7 @@
         frames: items,
       })
     );
-    fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
+    fetch("bitrix.abguard.ru/local/gbr_bot_webhook.php", {
       method: "POST",
       body: r,
     })
