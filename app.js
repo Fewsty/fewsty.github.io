@@ -19,6 +19,7 @@
 
   var tg = window.Telegram.WebApp;
   var mb = tg.MainButton;
+  var chat_id = `${tg.initDataUnsafe.chat.id}`;
   tg.ready();
   tg.expand();
   //mb.textColor = "#FFFFFF";
@@ -83,8 +84,15 @@
   tg.onEvent("mainButtonClicked", function () {
     fetch("https://bitrix.abguard.ru/local/gbr_bot_webhook.php", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "camera_photo", frames: items }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chat_id,
+        action: "camera_photo",
+        frames: items,
+      }),
     })
       .then((data) => {
         console.log("Успешно:", data);
