@@ -81,6 +81,7 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
+    alert(Telegram.WebApp.initData);
     chat_id = tg.initDataUnsafe?.chat?.id;
     alert(tg.initDataUnsafe?.chat?.id);
     alert(tg.initDataUnsafe?.chat);
