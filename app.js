@@ -70,6 +70,7 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
+    alert(video.videoWidth);
     if (tg.initDataUnsafe?.chat) chat_id = tg.initDataUnsafe.chat.id;
     else chat_id = tg.initDataUnsafe.user.id;
     r = new FormData();
