@@ -81,8 +81,10 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
-    chat_id = tg.initDataUnsafe.chat.id;
-    //alert(chat_id);
+    chat_id = tg.initDataUnsafe?.chat?.id;
+    alert(tg.initDataUnsafe?.chat?.id);
+    alert(tg.initDataUnsafe?.chat);
+    alert(tg.initDataUnsafe);
     r = new FormData();
     r.append(
       "json",
