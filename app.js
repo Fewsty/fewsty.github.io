@@ -81,11 +81,8 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
-    alert(Telegram.WebApp.initData);
-    chat_id = tg.initDataUnsafe?.chat?.id;
-    alert(tg.initDataUnsafe?.chat?.id);
-    alert(tg.initDataUnsafe?.chat);
-    alert(tg.initDataUnsafe);
+    if (tg.initDataUnsafe?.chat) chat_id = tg.initDataUnsafe.chat.id;
+    else chat_id = tg.initDataUnsafe.user.id;
     r = new FormData();
     r.append(
       "json",
