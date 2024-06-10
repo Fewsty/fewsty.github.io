@@ -1,7 +1,4 @@
 (function () {
-  var width = 320;
-  var height = 0;
-
   var streaming = false;
 
   var video = null;
@@ -51,16 +48,8 @@
     "play",
     function (ev) {
       if (!streaming) {
-        height = video.videoHeight / (video.videoWidth / width);
-
-        if (isNaN(height)) {
-          height = width / (4 / 3);
-        }
-
-        video.setAttribute("width", width);
-        video.setAttribute("height", height);
-        canvas.setAttribute("width", width);
-        canvas.setAttribute("height", height);
+        canvas.setAttribute("width", video.videoWidth);
+        canvas.setAttribute("height", video.videoHeight);
         streaming = true;
       }
     },
@@ -132,10 +121,10 @@
 
   function takepicture() {
     var context = canvas.getContext("2d");
-    if (width && height) {
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(video, 0, 0, width, height);
+    if (video.videoWidth && video.videoHeight) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
