@@ -70,7 +70,6 @@
     false
   );
   tg.onEvent("mainButtonClicked", function () {
-    alert(video.videoWidth);
     if (tg.initDataUnsafe?.chat) chat_id = tg.initDataUnsafe.chat.id;
     else chat_id = tg.initDataUnsafe.user.id;
     r = new FormData();
@@ -126,6 +125,7 @@
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+      alert(video.videoWidth);
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
