@@ -1,14 +1,15 @@
 #video {
 	border: 1px solid black;
 	box-shadow: 2px 2px 3px black;
-	width:98vw;
-	height:40vh;
+	width:320px;
+	height:240px;
   }
   
   .photo {
 	border: 1px solid black;
 	box-shadow: 2px 2px 3px black;
-	width:45vw;
+	width:160px;
+	height:120px;
 	float: left;
   }
   

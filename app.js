@@ -31,8 +31,8 @@
           audio: false,
           video: {
             facingMode: "environment",
-            width: { ideal: 720 },
-            height: { ideal: 1280 },
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
             //width: { min: 576, ideal: 720, max: 1080 },
             //height: { min: 1024, ideal: 1280, max: 1920 },
           },
