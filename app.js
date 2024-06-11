@@ -20,6 +20,7 @@
   var mb = tg.MainButton;
   tg.ready();
   tg.expand();
+
   //mb.textColor = "#FFFFFF";
   mb.hide();
 
@@ -81,6 +82,7 @@
         element.remove();
       });
       clearbutton.style.display = "none";
+      items = [];
       mb.hide();
     },
     false

@@ -59,3 +59,14 @@
 	font-family: "Lucida Grande", "Arial", sans-serif;
 	width: 760px;
   }
+
+  body {
+	--bg-color: var(--tg-theme-bg-color, #fff);
+	font-family: sans-serif;
+	background-color: var(--bg-color);
+	color: var(--tg-theme-text-color, #222);
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	color-scheme: var(--tg-color-scheme);
+}
