@@ -11,15 +11,16 @@
   output = document.getElementById("output");
   before = document.getElementById("before");
   startbutton = document.getElementById("startbutton");
+  clearbutton = document.getElementById("clearbutton");
 
   var items = [];
+  var imgs = [];
 
   var tg = window.Telegram.WebApp;
   var mb = tg.MainButton;
   tg.ready();
   tg.expand();
   //mb.textColor = "#FFFFFF";
-  mb.setText("Отправить");
   mb.hide();
 
   function startup() {
@@ -61,6 +62,7 @@
       const newImg = document.createElement("img");
       output.insertBefore(newImg, before);
       newImg.classList.add("photo");
+      imgs.push(newImg);
       before = newImg;
       photo = newImg;
 
@@ -69,7 +71,21 @@
     },
     false
   );
+  clearbutton.addEventListener(
+    "click",
+    function (ev) {
+      before = document.getElementById("before");
+      imgs.forEach((element) => {
+        element.remove();
+      });
+      clearbutton.style.display = "none";
+      mb.hide();
+    },
+    false
+  );
   tg.onEvent("mainButtonClicked", function () {
+    mb.color = "#808080";
+    mb.setText("Идёт отправка фото");
     if (tg.initDataUnsafe?.chat) chat_id = tg.initDataUnsafe.chat.id;
     else chat_id = tg.initDataUnsafe.user.id;
     r = new FormData();
@@ -125,11 +141,12 @@
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-      alert(video.videoWidth);
+      //alert(video.videoWidth);
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
       items.push(data);
+      mb.setText("Отправить " + items.length + " фото");
       mb.show();
     } else {
       clearphoto();
