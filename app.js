@@ -156,7 +156,7 @@
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-      alert(video.videoWidth);
+      //alert(video.videoWidth);
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
