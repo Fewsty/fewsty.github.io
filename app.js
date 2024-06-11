@@ -30,6 +30,8 @@
           audio: false,
           video: {
             facingMode: "environment",
+            width: { min: 576, ideal: 720, max: 1080 },
+            height: { min: 1024, ideal: 1280, max: 1920 },
           },
         })
         .then(function success(stream) {
@@ -80,6 +82,19 @@
       });
       clearbutton.style.display = "none";
       mb.hide();
+    },
+    false
+  );
+  video.addEventListener(
+    "resize",
+    (ev) => {
+      let w = video.videoWidth;
+      let h = video.videoHeight;
+
+      if (w && h) {
+        video.style.width = w;
+        video.style.height = h;
+      }
     },
     false
   );
@@ -141,7 +156,7 @@
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-      //alert(video.videoWidth);
+      alert(video.videoWidth);
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
