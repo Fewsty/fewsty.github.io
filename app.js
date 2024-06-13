@@ -71,6 +71,7 @@
         const newImg = document.createElement("img");
         output.insertBefore(newImg, before);
         newImg.classList.add("photo");
+        if (isOnePhoto) imgs = [];
         imgs.push(newImg);
         before = newImg;
         photo = newImg;
@@ -169,11 +170,13 @@
 
       var data = canvas.toDataURL("image/png");
       photo.setAttribute("src", data);
-      items.push(data);
+
       clearbutton.style.display = "block";
-      if (isOnePhoto) mbtext = "Отправить";
-      else mbtext = "Отправить " + items.length + " фото";
-      mb.setText(mbtext);
+      if (isOnePhoto) {
+        items = [];
+      }
+      items.push(data);
+      mb.setText("Отправить " + items.length + " фото");
       mb.show();
     } else {
       clearphoto();
