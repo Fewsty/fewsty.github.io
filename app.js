@@ -16,6 +16,9 @@
   var items = [];
   var imgs = [];
 
+  param = new URLSearchParams(window.location.search).get("onePhoto");
+  isOnePhoto = param !== null ? true : false;
+
   var tg = window.Telegram.WebApp;
   var mb = tg.MainButton;
   tg.ready();
@@ -64,12 +67,14 @@
   startbutton.addEventListener(
     "click",
     function (ev) {
-      const newImg = document.createElement("img");
-      output.insertBefore(newImg, before);
-      newImg.classList.add("photo");
-      imgs.push(newImg);
-      before = newImg;
-      photo = newImg;
+      if ((isOnePhoto && photo === null) || !isOnePhoto) {
+        const newImg = document.createElement("img");
+        output.insertBefore(newImg, before);
+        newImg.classList.add("photo");
+        imgs.push(newImg);
+        before = newImg;
+        photo = newImg;
+      }
 
       takepicture();
       ev.preventDefault();
@@ -166,7 +171,9 @@
       photo.setAttribute("src", data);
       items.push(data);
       clearbutton.style.display = "block";
-      mb.setText("Отправить " + items.length + " фото");
+      if (isOnePhoto) mbtext = "Отправить";
+      else mbtext = "Отправить " + items.length + " фото";
+      mb.setText(mbtext);
       mb.show();
     } else {
       clearphoto();
